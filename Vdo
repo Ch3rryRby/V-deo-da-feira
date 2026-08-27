@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#ifdef _WIN32
+#include <windows.h>
+
+void esperar(int segundos) {
+    Sleep(segundos * 1000);
+}
+
+void limpar_tela() {
+    system("cls");
+}
+
+#else
+#include <unistd.h>
+
+void esperar(int segundos) {
+    sleep(segundos);
+}
+
+void limpar_tela() {
+    system("clear");
+}
+
+#endif
+
+int main() {
+
+    printf("Erro 404: arquivo nao encontrado\n");
+
+    esperar(10);
+
+    limpar_tela();
+
+    printf("Loading");
+
+    for (int i = 0; i < 5; i++) {
+        printf(".");
+        fflush(stdout);
+        esperar(1);
+    }
+
+    limpar_tela();
+
+    printf("Abrindo arquivo...\n");
+
+    return 0;
+}
